@@ -1,0 +1,35 @@
+GET http://localhost:8080/customer
+
+###
+
+GET http://localhost:8080/customer/1
+
+###
+
+POST http://localhost:8080/customer
+Content-Type: application/json
+
+{
+  "id": 1,
+  "firstName": "Obi-Wan",
+  "lastName": "Kenobi",
+  "email": "kenobi@jedi-order.com"
+}
+
+###
+
+POST http://localhost:8080/customer
+Content-Type: application/json
+
+{
+  "id": 2,
+  "firstName": "Anakin",
+  "lastName": "Skywalker",
+  "email": "skywalker@jedi-order.com"
+}
+
+###
+
+DELETE http://localhost:8080/customer/1
+
+###
