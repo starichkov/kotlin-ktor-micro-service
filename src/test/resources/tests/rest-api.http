@@ -1,0 +1,9 @@
+GET http://localhost:8080/json/kotlinx-serialization
+
+###
+
+GET http://localhost:8080/
+
+###
+
+GET http://localhost:8080/ktor/application/shutdown
