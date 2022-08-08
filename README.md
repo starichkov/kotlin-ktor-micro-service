@@ -1,9 +1,17 @@
 # kotlin-ktor-micro-service
 
-## Gradle
+## Technical information
 
-### Update wrapper version
+| Piece of tech | Version |
+|---------------|---------|
+| Kotlin        | 1.7.10  |
+| Gradle        | 7.5.1   |
+| JVM           | 17      |
+
+### Gradle
+
+#### How to update Gradle Wrapper version
 
 ```shell
-./gradlew wrapper --gradle-version 7.4.2
+./gradlew wrapper --gradle-version 7.5.1
 ```
