@@ -1,13 +1,16 @@
 package com.templatetasks.kotlin.ktor.routes
 
-import com.templatetasks.kotlin.ktor.models.Customer
-import com.templatetasks.kotlin.ktor.models.customerStorage
+import com.templatetasks.kotlin.ktor.models.*
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
+/**
+ * @author Vadim Starichkov (starichkovva@gmail.com)
+ * @since 2022-05-08 15:59
+ */
 fun Route.customerRouting() {
     route("/customer") {
 

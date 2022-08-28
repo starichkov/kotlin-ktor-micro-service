@@ -3,6 +3,10 @@ package com.templatetasks.kotlin.ktor.plugins
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 
+/**
+ * @author Vadim Starichkov (starichkovva@gmail.com)
+ * @since 2022-05-08 15:00
+ */
 fun Application.configureAdministration() {
     install(ShutDownUrl.ApplicationCallPlugin) {
         // The URL that will be intercepted (you can also use the application.conf's ktor.deployment.shutdown.url key)

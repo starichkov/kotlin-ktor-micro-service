@@ -6,6 +6,10 @@ import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
+/**
+ * @author Vadim Starichkov (starichkovva@gmail.com)
+ * @since 2022-05-08 15:00
+ */
 fun Application.configureSerialization() {
     install(ContentNegotiation) {
         json()

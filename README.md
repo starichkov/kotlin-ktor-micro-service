@@ -1,5 +1,7 @@
 # kotlin-ktor-micro-service
 
+Kotlin microservice with JetBrains Ktor for HTTP API and JetBrains Exposed ORM.
+
 ## Technical information
 
 | Piece of tech | Version |

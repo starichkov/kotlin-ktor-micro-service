@@ -6,6 +6,10 @@ import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
+/**
+ * @author Vadim Starichkov (starichkovva@gmail.com)
+ * @since 2022-05-08 16:13
+ */
 fun Route.orderRouting() {
     route("/order") {
 
