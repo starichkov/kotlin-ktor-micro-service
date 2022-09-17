@@ -5,7 +5,7 @@
 | Piece of tech | Version |
 |---------------|---------|
 | Kotlin        | 1.7.10  |
-| Ktor          | 2.1.0   |
+| Ktor          | 2.1.1   |
 | Gradle        | 7.5.1   |
 | JVM           | 17      |
 
