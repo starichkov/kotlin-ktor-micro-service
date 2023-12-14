@@ -4,8 +4,8 @@
 
 | Piece of tech | Version |
 |---------------|---------|
-| Kotlin        | 1.8.21  |
-| Ktor          | 2.3.0   |
+| Kotlin        | 1.9.21  |
+| Ktor          | 2.3.7   |
 | Gradle        | 7.6.1   |
 | JVM           | 17      |
 
