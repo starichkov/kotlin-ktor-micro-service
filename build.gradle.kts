@@ -5,8 +5,8 @@ val nettyVersion: String by project
 
 plugins {
     application
-    kotlin("jvm") version "1.8.21"
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.21"
+    kotlin("jvm") version "1.9.23"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.23"
 }
 
 group = "com.templatetasks.kotlin.ktor"
