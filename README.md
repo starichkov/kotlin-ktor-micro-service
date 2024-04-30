@@ -7,7 +7,7 @@
 | Kotlin        | 1.9.23  |
 | Ktor          | 2.3.10  |
 | Gradle        | 8.7     |
-| JVM           | 17      |
+| JVM           | 21      |
 
 ### Gradle
 
