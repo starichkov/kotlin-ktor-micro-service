@@ -5,8 +5,8 @@ val nettyVersion: String by project
 
 plugins {
     application
-    kotlin("jvm") version "1.9.25"
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.25"
+    kotlin("jvm") version "2.0.20"
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.20"
 }
 
 group = "com.templatetasks.kotlin.ktor"
@@ -36,7 +36,8 @@ dependencies {
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions {
-        jvmTarget = "21"
+    compilerOptions {
+        apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0)
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
     }
 }
