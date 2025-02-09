@@ -1,3 +1,7 @@
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/starichkov/kotlin-ktor-micro-service/gradle.yaml?style=for-the-badge)](https://github.com/starichkov/kotlin-ktor-micro-service/actions/workflows/gradle.yaml)
+[![codecov](https://img.shields.io/codecov/c/github/starichkov/kotlin-ktor-micro-service?style=for-the-badge)](https://app.codecov.io/github/starichkov/kotlin-ktor-micro-service)
+[![GitHub license](https://img.shields.io/github/license/starichkov/kotlin-ktor-micro-service?style=for-the-badge)](https://github.com/starichkov/kotlin-ktor-micro-service/blob/main/LICENSE.md)
+
 # kotlin-ktor-micro-service
 
 ## Technical information
@@ -7,7 +11,7 @@
 | Kotlin        | 2.1.x   |
 | Ktor          | 3.0.x   |
 | Gradle        | 8.12.1  |
-| JVM           | 21      |
+| JVM           | 21      |     
 
 ## Migration guides
 
