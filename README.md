@@ -9,7 +9,7 @@
 | Piece of tech | Version |
 |---------------|---------|
 | Kotlin        | 2.1.x   |
-| Ktor          | 3.0.x   |
+| Ktor          | 3.1.x   |
 | Gradle        | 8.12.1  |
 | JVM           | 21      |     
 
