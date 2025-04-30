@@ -1,45 +1,75 @@
 package com.templatetasks.kotlin.ktor.routes
 
-import com.templatetasks.kotlin.ktor.models.orderStorage
+import com.templatetasks.kotlin.ktor.api.handleResult
+import com.templatetasks.kotlin.ktor.api.respondError
+import com.templatetasks.kotlin.ktor.models.Order
+import com.templatetasks.kotlin.ktor.service.OrderService
 import io.ktor.http.*
-import io.ktor.server.application.*
-import io.ktor.server.response.*
+import io.ktor.server.request.*
 import io.ktor.server.routing.*
 
-fun Route.orderRouting() {
+fun Route.orderRouting(orderService: OrderService) {
     route("/order") {
 
         get {
-            if (orderStorage.isNotEmpty()) {
-                call.respond(orderStorage)
-            }
+            val result = orderService.getAllOrders()
+            call.handleResult(result)
         }
 
         get("{number?}") {
-            val number =
-                call.parameters["number"] ?: return@get call.respondText(
+            val number = call.parameters["number"]
+            if (number.isNullOrBlank()) {
+                call.respondError(
+                    HttpStatusCode.BadRequest,
                     "Bad Request",
-                    status = HttpStatusCode.BadRequest
+                    "Order number cannot be blank"
                 )
-            val order = orderStorage.find { it.number == number } ?: return@get call.respondText(
-                "Not Found",
-                status = HttpStatusCode.NotFound
-            )
-            call.respond(order)
+                return@get
+            }
+            val result = orderService.getOrder(number)
+            call.handleResult(result)
         }
 
         get("{number?}/total") {
-            val number =
-                call.parameters["number"] ?: return@get call.respondText(
+            val number = call.parameters["number"]
+            if (number.isNullOrBlank()) {
+                call.respondError(
+                    HttpStatusCode.BadRequest,
                     "Bad Request",
-                    status = HttpStatusCode.BadRequest
+                    "Order number cannot be blank"
                 )
-            val order = orderStorage.find { it.number == number } ?: return@get call.respondText(
-                "Not Found",
-                status = HttpStatusCode.NotFound
-            )
-            val total = order.contents.sumOf { it.price * it.amount }
-            call.respond(total)
+                return@get
+            }
+            val result = orderService.getOrderTotal(number)
+            call.handleResult(result)
+        }
+
+        post {
+            try {
+                val order = call.receive<Order>()
+                val result = orderService.createOrder(order)
+                call.handleResult(result)
+            } catch (e: ContentTransformationException) {
+                call.respondError(
+                    HttpStatusCode.BadRequest,
+                    "Bad Request",
+                    "Invalid order data format"
+                )
+            }
+        }
+
+        delete("{number?}") {
+            val number = call.parameters["number"]
+            if (number.isNullOrBlank()) {
+                call.respondError(
+                    HttpStatusCode.BadRequest,
+                    "Bad Request",
+                    "Order number cannot be blank"
+                )
+                return@delete
+            }
+            val result = orderService.deleteOrder(number)
+            call.handleResult(result)
         }
     }
 }

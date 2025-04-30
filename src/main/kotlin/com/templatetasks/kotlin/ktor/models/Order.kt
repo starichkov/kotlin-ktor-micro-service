@@ -8,7 +8,7 @@ data class Order(val number: String, val contents: List<OrderItem>)
 @Serializable
 data class OrderItem(val item: String, val amount: Int, val price: Double)
 
-val orderStorage = listOf(
+val orderStorage = mutableListOf(
     Order(
         "2022-05-01-01", listOf(
             OrderItem("Ham Sandwich", 2, 5.50),

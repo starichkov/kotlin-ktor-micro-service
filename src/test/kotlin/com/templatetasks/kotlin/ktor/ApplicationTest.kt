@@ -8,7 +8,12 @@ import io.ktor.server.testing.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
+/**
+ * @author Vadim Starichkov (starichkovva@gmail.com)
+ * @since 08.05.2022 15:08
+ */
 class ApplicationTest {
+
     @Test
     fun testRoot() = testApplication {
         application {
