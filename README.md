@@ -25,6 +25,46 @@ Official migration guide to [Ktor 3](https://ktor.io/docs/migrating-3.html).
 ./gradlew wrapper --gradle-version 9.3.0
 ```
 
+## Docker
+
+You can build and run the application using Docker.
+
+### Building and Running Locally
+
+To build the Docker image locally, first ensure you have the application distribution ready:
+
+```shell
+./gradlew installDist
+docker build -t ktor-app .
+```
+
+To run the container:
+
+```shell
+docker run -d -p 8080:8080 --name ktor-container ktor-app
+```
+
+To shut down the application gracefully and remove the container:
+
+```shell
+curl -s http://localhost:8080/ktor/application/shutdown
+docker rm -f ktor-container
+```
+
+### Testing the Docker Setup
+
+A script is provided to automate the build, run, health check, and shutdown process:
+
+```shell
+./scripts/test-docker.sh
+```
+
+You can skip the Gradle tests by setting `SKIP_TESTS=true`:
+
+```shell
+SKIP_TESTS=true ./scripts/test-docker.sh
+```
+
 ## About TemplateTasks
 
 TemplateTasks is a personal software development initiative by Vadim Starichkov, focused on sharing open-source libraries, services, and technical demos.

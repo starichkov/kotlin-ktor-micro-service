@@ -24,7 +24,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Run build
-        run: ./gradlew build
+        run: ./gradlew build installDist
 
       - name: Coverage
         uses: codecov/codecov-action@v5
@@ -32,3 +32,31 @@ jobs:
           files: ./build/reports/jacoco/test/jacocoTestReport.xml
           name: codecov
           token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Build Docker image
+        run: docker build -t ktor-app .
+
+      - name: Run Docker container
+        run: docker run -d -p 8080:8080 --name ktor-container ktor-app
+
+      - name: Health check
+        run: |
+          MAX_RETRIES=10
+          RETRY_COUNT=0
+          until curl -s http://localhost:8080/ | grep "Hello World!"; do
+            RETRY_COUNT=$((RETRY_COUNT+1))
+            if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
+              echo "Health check failed after $MAX_RETRIES retries"
+              docker logs ktor-container
+              exit 1
+            fi
+            echo "Waiting for app to start... ($RETRY_COUNT/$MAX_RETRIES)"
+            sleep 2
+          done
+          echo "Health check passed!"
+
+      - name: Shutdown and Cleanup
+        if: always()
+        run: |
+          curl -s http://localhost:8080/ktor/application/shutdown || true
+          docker rm -f ktor-container
