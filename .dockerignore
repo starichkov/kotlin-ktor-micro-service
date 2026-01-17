@@ -1,0 +1,12 @@
+.github
+.gradle
+.idea
+.junie
+.kotlin
+Dockerfile
+.dockerignore
+*.http
+README.md
+LICENSE.md
+build/*
+!build/install
