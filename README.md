@@ -8,10 +8,10 @@
 
 | Piece of tech | Version |
 |---------------|---------|
-| Kotlin        | 2.2.x   |
-| Ktor          | 3.2.x   |
-| Gradle        | 8.14.x  |
-| JVM           | 21      |     
+| Kotlin        | 2.3.x   |
+| Ktor          | 3.3.x   |
+| Gradle        | 9.3.x   |
+| JVM           | 25      |     
 
 ## Migration guides
 
@@ -22,5 +22,5 @@ Official migration guide to [Ktor 3](https://ktor.io/docs/migrating-3.html).
 #### How to update a Gradle Wrapper version
 
 ```shell
-./gradlew wrapper --gradle-version 8.14.3
+./gradlew wrapper --gradle-version 9.3.0
 ```
