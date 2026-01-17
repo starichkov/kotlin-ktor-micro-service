@@ -7,6 +7,15 @@ package com.templatetasks.kotlin.ktor.api
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class ErrorResponse(
+    val status: String,
+    val message: String,
+    val timestamp: String,
+    val details: Map<String, List<ValidationError>>? = null
+)
 
 suspend inline fun <reified T> ApplicationCall.handleResult(result: ApiResult<T>) {
     when (result) {
@@ -48,15 +57,16 @@ suspend fun ApplicationCall.respondError(
     status: HttpStatusCode,
     error: String,
     message: String,
-    details: Map<String, Any>? = null
+    details: Map<String, List<ValidationError>>? = null
 ) {
     respond(
         status,
-        mapOf(
-            "status" to error,
-            "message" to message,
-            "timestamp" to System.currentTimeMillis().toString()
-        ).let { if (details != null) it + ("details" to details) else it }
+        ErrorResponse(
+            status = error,
+            message = message,
+            timestamp = System.currentTimeMillis().toString(),
+            details = details
+        )
     )
 }
 

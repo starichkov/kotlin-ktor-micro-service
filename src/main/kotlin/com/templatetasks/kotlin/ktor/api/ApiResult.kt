@@ -1,5 +1,7 @@
 package com.templatetasks.kotlin.ktor.api
 
+import kotlinx.serialization.Serializable
+
 /**
  * @author Vadim Starichkov (starichkovva@gmail.com)
  * @since 28.04.2025 21:12
@@ -20,4 +22,5 @@ sealed class ApiResult<out T> {
     }
 }
 
+@Serializable
 data class ValidationError(val field: String, val message: String)
