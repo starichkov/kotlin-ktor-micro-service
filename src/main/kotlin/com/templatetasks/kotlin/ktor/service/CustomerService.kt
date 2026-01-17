@@ -10,13 +10,13 @@ import kotlin.collections.isNotEmpty
  * @author Vadim Starichkov (starichkovva@gmail.com)
  * @since 28.04.2025 21:13
  */
-class CustomerService() {
+open class CustomerService() {
 
-    fun getAllCustomers(): ApiResult<List<Customer>> {
+    open fun getAllCustomers(): ApiResult<List<Customer>> {
         return ApiResult.Success(customerStorage)
     }
 
-    fun getCustomer(id: String): ApiResult<Customer> {
+    open fun getCustomer(id: String): ApiResult<Customer> {
         if (id.isBlank()) {
             return ApiResult.Error.BadRequest("Customer ID cannot be blank")
         }
@@ -29,10 +29,14 @@ class CustomerService() {
         }
     }
 
-    fun createCustomer(customer: Customer): ApiResult<Unit> {
+    open fun createCustomer(customer: Customer): ApiResult<Unit> {
         val validationErrors = validateCustomer(customer)
         if (validationErrors.isNotEmpty()) {
             return ApiResult.Error.ValidationFailed(validationErrors)
+        }
+
+        if (customerStorage.any { it.id == customer.id }) {
+            return ApiResult.Error.BadRequest("Customer with ID ${customer.id} already exists")
         }
 
         return try {
@@ -43,7 +47,7 @@ class CustomerService() {
         }
     }
 
-    fun deleteCustomer(id: String): ApiResult<Unit> {
+    open fun deleteCustomer(id: String): ApiResult<Unit> {
         if (id.isBlank()) {
             return ApiResult.Error.BadRequest("Customer ID cannot be blank")
         }

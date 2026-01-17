@@ -5,6 +5,7 @@ import com.templatetasks.kotlin.ktor.api.respondError
 import com.templatetasks.kotlin.ktor.models.Order
 import com.templatetasks.kotlin.ktor.service.OrderService
 import io.ktor.http.*
+import io.ktor.server.plugins.*
 import io.ktor.server.request.*
 import io.ktor.server.routing.*
 
@@ -49,12 +50,18 @@ fun Route.orderRouting(orderService: OrderService) {
                 val order = call.receive<Order>()
                 val result = orderService.createOrder(order)
                 call.handleResult(result)
-            } catch (e: ContentTransformationException) {
-                call.respondError(
-                    HttpStatusCode.BadRequest,
-                    "Bad Request",
-                    "Invalid order data format"
-                )
+            } catch (e: Exception) {
+                when (e) {
+                    is BadRequestException, is io.ktor.server.request.ContentTransformationException -> {
+                        call.respondError(
+                            HttpStatusCode.BadRequest,
+                            "Bad Request",
+                            "Invalid order data format"
+                        )
+                    }
+
+                    else -> throw e
+                }
             }
         }
 

@@ -5,6 +5,7 @@ import com.templatetasks.kotlin.ktor.api.respondError
 import com.templatetasks.kotlin.ktor.models.Customer
 import com.templatetasks.kotlin.ktor.service.CustomerService
 import io.ktor.http.*
+import io.ktor.server.plugins.*
 import io.ktor.server.request.*
 import io.ktor.server.routing.*
 
@@ -35,12 +36,18 @@ fun Route.customerRouting(customerService: CustomerService) {
                 val customer = call.receive<Customer>()
                 val result = customerService.createCustomer(customer)
                 call.handleResult(result)
-            } catch (e: ContentTransformationException) {
-                call.respondError(
-                    HttpStatusCode.BadRequest,
-                    "Bad Request",
-                    "Invalid customer data format"
-                )
+            } catch (e: Exception) {
+                when (e) {
+                    is BadRequestException, is io.ktor.server.request.ContentTransformationException -> {
+                        call.respondError(
+                            HttpStatusCode.BadRequest,
+                            "Bad Request",
+                            "Invalid customer data format"
+                        )
+                    }
+
+                    else -> throw e
+                }
             }
         }
 

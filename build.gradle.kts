@@ -35,7 +35,11 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     testImplementation("commons-codec:commons-codec:$commonsCodecVersion")
     testImplementation("io.ktor:ktor-server-test-host:$ktorVersion")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:$kotlinVersion")
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
 
 java {
@@ -67,12 +71,12 @@ tasks.jacocoTestCoverageVerification {
             limit {
                 counter = "INSTRUCTION"
                 value = "COVEREDRATIO"
-                minimum = "0.83".toBigDecimal()
+                minimum = "0.93".toBigDecimal()
             }
             limit {
                 counter = "BRANCH"
                 value = "COVEREDRATIO"
-                minimum = "0.89".toBigDecimal()
+                minimum = "0.92".toBigDecimal()
             }
         }
     }

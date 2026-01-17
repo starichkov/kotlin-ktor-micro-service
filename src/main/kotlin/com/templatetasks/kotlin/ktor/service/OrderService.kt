@@ -9,13 +9,13 @@ import com.templatetasks.kotlin.ktor.models.orderStorage
  * @author Vadim Starichkov (starichkovva@gmail.com)
  * @since 30.04.2025 23:26
  */
-class OrderService() {
+open class OrderService() {
 
-    fun getAllOrders(): ApiResult<List<Order>> {
+    open fun getAllOrders(): ApiResult<List<Order>> {
         return ApiResult.Success(orderStorage)
     }
 
-    fun getOrder(number: String): ApiResult<Order> {
+    open fun getOrder(number: String): ApiResult<Order> {
         if (number.isBlank()) {
             return ApiResult.Error.BadRequest("Order number cannot be blank")
         }
@@ -28,7 +28,7 @@ class OrderService() {
         }
     }
 
-    fun getOrderTotal(number: String): ApiResult<Double> {
+    open fun getOrderTotal(number: String): ApiResult<Double> {
         if (number.isBlank()) {
             return ApiResult.Error.BadRequest("Order number cannot be blank")
         }
@@ -42,10 +42,14 @@ class OrderService() {
         }
     }
 
-    fun createOrder(order: Order): ApiResult<Unit> {
+    open fun createOrder(order: Order): ApiResult<Unit> {
         val validationErrors = validateOrder(order)
         if (validationErrors.isNotEmpty()) {
             return ApiResult.Error.ValidationFailed(validationErrors)
+        }
+
+        if (orderStorage.any { it.number == order.number }) {
+            return ApiResult.Error.BadRequest("Order with number ${order.number} already exists")
         }
 
         return try {
@@ -56,7 +60,7 @@ class OrderService() {
         }
     }
 
-    fun deleteOrder(number: String): ApiResult<Unit> {
+    open fun deleteOrder(number: String): ApiResult<Unit> {
         if (number.isBlank()) {
             return ApiResult.Error.BadRequest("Order number cannot be blank")
         }
