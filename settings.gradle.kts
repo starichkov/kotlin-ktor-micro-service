@@ -1,7 +1,7 @@
 rootProject.name = "kotlin-ktor-micro-service"
 
 pluginManagement {
-    val kotlinVersion: String by settings
+    val kotlinVersion = providers.gradleProperty("kotlinVersion").get()
 
     resolutionStrategy {
         eachPlugin {

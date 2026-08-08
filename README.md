@@ -11,8 +11,8 @@ A demonstration of a Kotlin microservice built with the Ktor framework, showcasi
 | Piece of Tech | Version |
 |---------------|---------|
 | Kotlin        | 2.3.x   |
-| Ktor          | 3.3.x   |
-| Gradle        | 9.3.x   |
+| Ktor          | 3.5.x   |
+| Gradle        | 9.6.x   |
 | JVM           | 25      |
 
 ## Requirements
@@ -82,7 +82,7 @@ SKIP_TESTS=true ./scripts/test-docker.sh
 - `./gradlew build`: Full build, including tests and coverage verification.
 - `./gradlew test`: Runs unit and integration tests.
 - `./gradlew check`: Executes all verification tasks, including JaCoCo coverage checks.
-- `./gradlew wrapper --gradle-version 9.3.0`: Updates the Gradle Wrapper version.
+- `./gradlew wrapper --gradle-version 9.6.1`: Updates the Gradle Wrapper version.
 - `./scripts/test-docker.sh`: Automates Docker build and verification.
 
 ## Environment Variables
