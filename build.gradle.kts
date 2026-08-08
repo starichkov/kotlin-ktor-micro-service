@@ -1,9 +1,9 @@
-val ktorVersion: String by project
-val kotlinVersion: String by project
-val logbackVersion: String by project
-val nettyVersion: String by project
-val jacocoVersion: String by project
-val commonsCodecVersion: String by project
+val ktorVersion = project.property("ktorVersion") as String
+val kotlinVersion = project.property("kotlinVersion") as String
+val logbackVersion = project.property("logbackVersion") as String
+val nettyVersion = project.property("nettyVersion") as String
+val jacocoVersion = project.property("jacocoVersion") as String
+val commonsCodecVersion = project.property("commonsCodecVersion") as String
 
 plugins {
     application
