@@ -5,8 +5,8 @@ This is a Kotlin microservice built using the Ktor framework. It follows a stand
 
 ### Tech Stack
 - **Language**: Kotlin 2.3.x (API version 2.3)
-- **Framework**: Ktor 3.3.x
-- **Build System**: Gradle 9.3.x (with Kotlin DSL)
+- **Framework**: Ktor 3.5.x
+- **Build System**: Gradle 9.6.x (with Kotlin DSL)
 - **Runtime**: JVM 25 (Java Toolchain configured)
 - **Server Engine**: Netty
 - **Serialization**: Kotlinx Serialization (JSON)
